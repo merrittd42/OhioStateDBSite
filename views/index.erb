@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='UTF-8' />
-    <title>Database Fun!</title>
-    <link href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css' rel='stylesheet' />
-  </head>
   <body class='container'>
     <p>Please select the action to perform!</p>
+
+    <div class="btn-group">
     <form action='emptyDB' method='get'>
     <button type='submit' class='btn btn-primary'>Show Empty Database!</button>
     </form>
@@ -39,12 +34,12 @@
     <button type='submit' class='btn btn-primary'>Run aggregation query!</button>
     </form>
 
-    <form action='inner join' method='get'>
+    <form action='innerJoin' method='get'>
     <button type='submit' class='btn btn-primary'>Run inner join query!</button>
     </form>
 
-    <form action='outer join' method='get'>
+    <form action='outerJoin' method='get'>
     <button type='submit' class='btn btn-primary'>Run outer join query!</button>
     </form>
+  </div>
   </body>
-</html>
