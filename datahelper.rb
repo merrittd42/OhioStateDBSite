@@ -1,6 +1,14 @@
 require 'sinatra'
 require 'tiny_tds'
 
+#So obviously this is not secure, but it's for a local database.
+#Also, Vroom Vroom Car is an awesome password, no doubts about that one.
+@client = TinyTds::Client.new username: 'sa', password: 'VroomVroomCar!',
+  host: 'localhost', port: 1433
+  puts 'Connecting to SQL Server'
+
+if @client.active? == true then puts 'Connected, sweet!' end
+
 get '/' do
   @title = "Oh boy, this is an index page."
   erb :index
