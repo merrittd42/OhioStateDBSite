@@ -29,22 +29,22 @@ get '/populateDB' do
   @result = executeQuery(@insertQ)
   @tableGetter = executeQuery(@tableExampleQ)
   @tableHead = @tableGetter.fields
-  puts @table.class
   erb :populateDB
 end
 
 get '/union' do
   @title = "The union operation, in all its glory."
-  @result = executeQuery(@unionQ)
-  @result.each do |row|
-    puts row
-  end
+  @tableGetter = executeQuery(@unionQ)
+  @tableHead = @tableGetter.fields
+  puts @tableGetter.fields
   erb :union
 end
 
 get '/intersection' do
   @title = "Intersection, but not of the traffic variety."
-  executeQuery(@intersectionQ)
+  @tableGetter = executeQuery(@intersectionQ)
+  @tableHead = @tableGetter.fields
+  puts @tableGetter.fields
   erb :intersection
 end
 
@@ -437,7 +437,7 @@ SELECT Building_Type, Amenities, Number_of_rooms, Parking_Spots, Utility_Package
 FROM  PROPERTY
 WHERE Address_name = '456 ohio st'"
 
-@inertsectionQ = "use [Property Management Company]
+@intersectionQ = "use [Property Management Company]
 --intersection (Tenants have the same name as their manager i.e. same person)
 SELECT Name
 FROM TENANT
