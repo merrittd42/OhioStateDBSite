@@ -36,7 +36,6 @@ get '/union' do
   @title = "The union operation, in all its glory."
   @tableGetter = executeQuery(@unionQ)
   @tableHead = @tableGetter.fields
-  puts @tableGetter.fields
   erb :union
 end
 
@@ -44,37 +43,41 @@ get '/intersection' do
   @title = "Intersection, but not of the traffic variety."
   @tableGetter = executeQuery(@intersectionQ)
   @tableHead = @tableGetter.fields
-  puts @tableGetter.fields
   erb :intersection
 end
 
 get '/difference' do
   @title = "Whether these lame titles annoy you makes no DIFFERENCE to me!"
-  executeQuery(@differenceQ)
+  @tableGetter = executeQuery(@differenceQ)
+  @tableHead = @tableGetter.fields
   erb :difference
 end
 
 get '/division' do
   @title = "It is such a Joy to do Divison!"
-  executeQuery(@divisionQ)
+  @tableGetter = executeQuery(@divisionQ)
+  @tableHead = @tableGetter.fields
   erb :division
 end
 
 get '/aggregation' do
   @title = "Aggregation is a hard word to spell. I know from experience."
-  executeQuery(@aggregationQ)
+  @tableGetter = executeQuery(@aggregationQ)
+  @tableHead = @tableGetter.fields
   erb :aggregation
 end
 
 get '/innerJoin' do
   @title = "Inner join! Wow! Look at those graphics!"
-  executeQuery(@innerJoinQ)
+  @tableGetter = executeQuery(@innerJoinQ)
+  @tableHead = @tableGetter.fields
   erb :innerJoin
 end
 
 get '/outerJoin' do
   @title = "Outer join! It is ALSO a join! Oh man!"
-  executeQuery(@outerJoinQ)
+  @tableGetter = executeQuery(@outerJoinQ)
+  @tableHead = @tableGetter.fields
   erb :outerJoin
 end
 

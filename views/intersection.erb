@@ -7,7 +7,9 @@
 </tr>
 <%@tableGetter.each do |row| %>
 <tr>
-  <td><%= row["Name"] %></td>
+  <%@tableHead.each do |headerData|%>
+  <td><%= row[headerData] %></td>
+  <%end%>
 </tr>
 <%end%>
 </table>
