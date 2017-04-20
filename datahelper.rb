@@ -82,7 +82,18 @@ get '/outerJoin' do
 end
 
 get '/customQuery' do
+@title = "Custom query time!"
+erb :customQuery
+end
 
+post '/doQuery' do
+@title = "Here's your results!"
+@submitText = "use [Property Management Company] "
+@submitText = @submitText + params[:submittedStatement].to_s
+puts @submitText
+@tableGetter = executeQuery(@submitText)
+@tableHead = @tableGetter.fields
+erb :customResults
 end
 
 get '/databaseExplode' do
