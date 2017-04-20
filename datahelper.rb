@@ -20,18 +20,25 @@ end
 get '/tableMake' do
   @title = "Cookin' up some tables right quick."
   executeQuery(@tableQ)
+  @result = executeQuery(@listTableQ)
   erb :tableMake
 end
 
 get '/populateDB' do
   @title = "What is a table but a container for tuples?"
-  executeQuery(@insertQ)
+  @result = executeQuery(@insertQ)
+  @tableGetter = executeQuery(@tableExampleQ)
+  @tableHead = @tableGetter.fields
+  puts @table.class
   erb :populateDB
 end
 
 get '/union' do
   @title = "The union operation, in all its glory."
-  executeQuery(@unionQ)
+  @result = executeQuery(@unionQ)
+  @result.each do |row|
+    puts row
+  end
   erb :union
 end
 
@@ -82,6 +89,7 @@ get '/databaseExplode' do
 end
 
 before do
+
   def executeQuery(sql)
     #So obviously this is not secure, but it's for a local database.
     #Also, Vroom Vroom Car is an awesome password, no doubts about that one.
@@ -91,13 +99,13 @@ before do
       result = client.execute(sql)
       result.each
       if result.affected_rows > 0 then puts "#{result.affected_rows} row(s) affected" end
-      result.each do |row|
-        puts row
-      end
       return result
   end
 
   @createDatabaseQ = "create database [Property Management Company]"
+  @listTableQ = "USE [Property Management Company]
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'"
+  @tableExampleQ = "USE [Property Management Company] SELECT * FROM TENANT"
   @tableQ = "use [Property Management Company]
 create table LEASE
 (Lease_ID int not null,

@@ -1,0 +1,15 @@
+<body> <p>Running the command <pre><code><%= @tableQ %></code></pre> which will create the tables for the database!
+  If we try to use this button again, we will get an error, showing the tables exist!
+</p>
+
+<p>Here are the table names. They have been retrieved from the database using <pre><code><%= @listTableQ %>.</code></pre>
+  <ul>
+  <%@result.each do |row| %>
+  <li>
+    <%= row["TABLE_NAME"] %>
+  </li>
+  <% end %>
+</ul>
+<form action='/' method='get'>
+<button type='submit' class='btn btn-primary'>Return</button>
+</form> </body>

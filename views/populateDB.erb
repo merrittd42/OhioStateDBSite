@@ -1,0 +1,27 @@
+<body> <p>Running the command <pre><code><%= @insertQ %></code></pre> which will populate the tables for the database!
+  If we try to use this button again, we will get an error, showing the data in the tables already exists!
+  Specifically, Microsoft SQL Server gets upset we are trying to insert duplicate primary keys.
+</p>
+
+<p>Here is an example of a table with data, fetched with the command <pre><code><%= @tableExampleQ %></code></pre>.
+<table class="table table-striped table-responsive">
+  <tr>
+  <%@tableHead.each do |headerData| %>
+    <th><%= headerData %></th>
+  <% end %>
+</tr>
+<%@tableGetter.each do |row| %>
+<tr>
+<td><%= row["Name"] %></td>
+<td><%= row["Ssn"] %></td>
+<td><%= row["Birthdate"] %></td>
+<td><%= row["Phone_Number"] %></td>
+<td><%= row["Gender"] %></td>
+<td><%= row["Email"] %></td>
+<td><%= row["Lease_ID"] %></td>
+</tr>
+<%end%>
+</table>
+<form action='/' method='get'>
+<button type='submit' class='btn btn-primary'>Return</button>
+</form> </body>
